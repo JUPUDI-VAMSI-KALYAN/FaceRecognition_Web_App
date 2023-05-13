@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+
+{% block bodyblock %}
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <br><br>
+            <!-- Form : user will upload image-->
+            <h3 class="display-8">Gender Classification</h3>
+            <p>Upload an image (.jpg, .jpeg, .png), our model will detcet face first and then gender based on face (male or female)</p>
+        
+            <!-- Upload image form -->
+            <form action="#" method="POST" enctype="multipart/form-data">
+                <div class="input-group" style="width: 500px;">
+                    <input type="file" class="form-control" name="image_name" required>
+                    <input type="submit" value="upload & predict" class="btn btn-outline-primary" width="500">
+                </div>
+            
+            
+            </form>
+        </div>
+        <div class="col-8">
+            <!-- Show my reporting, prediction,(gray scale, eigen image and probability score) -->
+            {% if fileupload %}
+            <br><br>
+                <!--predicted image-->
+                <h3 class="display-8">Predicted Image</h3>
+                <img src="/static/predict/predicted_image.jpg" width="500" class="image-fluid" alt="predicted image">
+                <hr>
+                <br>
+                <table class="table table-hover table-striped">
+                    <tr>
+                        <th>Detected Face</th>
+                        <th>Eigen Face</th>
+                        <th>Predicted Gender</th>
+                        <th>Score</th>
+                    </tr>
+                    {% for element in report %}
+                        <tr>
+                            <td>
+                                <img src="/static/predict/{{ element[0] }}" class="image-fluid" height="100px" alt="">
+                            </td>
+                            <td>
+                                <img src="/static/predict/{{ element[1] }}" class="image-fluid" height="100px" alt="">
+                            </td>
+                            <td>{{ element[2] }}</td>
+                            <td>{{ element[3] }}</td>
+                        </tr>
+                    {% endfor %}
+                </table>
+
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock%}
