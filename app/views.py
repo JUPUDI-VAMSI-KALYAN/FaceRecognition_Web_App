@@ -22,12 +22,12 @@ def genderapp():
     if request.method=='POST':
         f = request.files["image_name"]
         filename = f.filename
-        # basedir = os.path.abspath(os.path.dirname(__file__))
-        from os.path import join, dirname, realpath
-
+        path = os.path.realpath(__file__)
+        dir = os.path.dirname(path)
+        dir = dir.replace('app','upload')
         #UPLOADS_PATH = join(dirname(realpath(__file__)), '..\\static\\upload',filename)
         # save or image to upload folder
-        path = os.path.join(UPLOAD_FOLDER,filename)
+        path = os.path.join(dir,filename)
         f.save(path) #save image to upload folder
         # get pridictions
         pred_image, predictions = facerecognitionpipeline(UPLOADS_PATH)
