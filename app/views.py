@@ -24,18 +24,18 @@ def genderapp():
         filename = f.filename
         path = os.path.realpath(__file__)
         dir = os.path.dirname(path)
-        dir = dir.replace('app','upload')
+        dir = dir.replace('app','static/upload')
         print("path before",dir)
         #UPLOADS_PATH = join(dirname(realpath(__file__)), '..\\static\\upload',filename)
         # save or image to upload folder
         path = os.path.join(dir,filename)
         f.save(path) #save image to upload folder
         # get pridictions
-        pred_image, predictions = facerecognitionpipeline(UPLOADS_PATH)
+        pred_image, predictions = facerecognitionpipeline(path)
         pred_filename = "predicted_image.jpg"
         path = os.path.realpath(__file__)
         dir = os.path.dirname(path)
-        dir = dir.replace('app','static\predict')
+        dir = dir.replace('app','static/predict')
         os.chdir(dir)
         print("Path after prediction",dir)
         # print(dir)
