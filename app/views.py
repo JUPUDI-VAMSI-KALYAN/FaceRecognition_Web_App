@@ -22,10 +22,10 @@ def genderapp():
     if request.method=='POST':
         f = request.files["image_name"]
         filename = f.filename
-        path = os.path.realpath(__file__)
-        dir = os.path.dirname(path)
+        # path = os.path.realpath(__file__)
+        # dir = os.path.dirname(path)
         # dir = dir.replace('app','static/upload')
-        print("path before",dir)
+        # print("path before",dir)
         #UPLOADS_PATH = join(dirname(realpath(__file__)), '..\\static\\upload',filename)
         # save or image to upload folder
         path = os.path.join(UPLOAD_FOLDER,filename)
@@ -33,13 +33,13 @@ def genderapp():
         # get pridictions
         pred_image, predictions = facerecognitionpipeline(path)
         pred_filename = "predicted_image.jpg"
-        path = os.path.realpath(__file__)
-        dir = os.path.dirname(path)
-        dir = dir.replace('app','static/predict')
-        os.chdir(dir)
-        print("Path after prediction",dir)
+        # path = os.path.realpath(__file__)
+        # dir = os.path.dirname(path)
+        # dir = dir.replace('app','static/predict')
+        # os.chdir(dir)
+        # print("Path after prediction",dir)
         # print(dir)
-        cv2.imwrite(pred_filename,pred_image)
+        cv2.imwrite(f'./static/predict/{pred_filename}',pred_image)
         # print(predictions)
 
         report = []
@@ -52,14 +52,14 @@ def genderapp():
             #saving gray and eigen image in predict folder
             gray_image_name = f'roi_{i}.jpg'
             eigan_image_name = f'eigan_{i}.jpg'
-            matim.imsave(gray_image_name,gray_image,cmap='gray')
-            matim.imsave(eigan_image_name,eigen_image,cmap='gray')
+            matim.imsave('./static/predict/{gray_image_name}',gray_image,cmap='gray')
+            matim.imsave('./static/predict/{eigan_image_name}',eigen_image,cmap='gray')
 
             report.append([gray_image_name,eigan_image_name,gender_name,score])
         
         # removing files form upload folder
         
-        files = glob.glob(dir.replace('predict','upload')+"/*")
+        files = glob.glob("./static/upload/*")
         for f in files:
             if 'txt' not in f:
                 os.remove(f)
