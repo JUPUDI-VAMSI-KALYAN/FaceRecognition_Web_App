@@ -61,7 +61,8 @@ def genderapp():
         
         files = glob.glob(dir.replace('predict','upload')+"/*")
         for f in files:
-            os.remove(f)
+            if 'txt' not in f:
+                os.remove(f)
         return render_template('gender.html',fileupload=True,report=report) # POST request
 
             # print("ML model predicted Successfullt")
