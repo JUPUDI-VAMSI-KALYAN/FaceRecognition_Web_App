@@ -52,8 +52,8 @@ def genderapp():
             #saving gray and eigen image in predict folder
             gray_image_name = f'roi_{i}.jpg'
             eigan_image_name = f'eigan_{i}.jpg'
-            matim.imsave('./static/predict/{gray_image_name}',gray_image,cmap='gray')
-            matim.imsave('./static/predict/{eigan_image_name}',eigen_image,cmap='gray')
+            matim.imsave(f'./static/predict/{gray_image_name}',gray_image,cmap='gray')
+            matim.imsave(f'./static/predict/{eigan_image_name}',eigen_image,cmap='gray')
 
             report.append([gray_image_name,eigan_image_name,gender_name,score])
         
