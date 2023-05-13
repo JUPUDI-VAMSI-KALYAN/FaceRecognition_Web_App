@@ -25,6 +25,7 @@ def genderapp():
         path = os.path.realpath(__file__)
         dir = os.path.dirname(path)
         dir = dir.replace('app','upload')
+        print("path before",dir)
         #UPLOADS_PATH = join(dirname(realpath(__file__)), '..\\static\\upload',filename)
         # save or image to upload folder
         path = os.path.join(dir,filename)
@@ -36,6 +37,7 @@ def genderapp():
         dir = os.path.dirname(path)
         dir = dir.replace('app','static\predict')
         os.chdir(dir)
+        print("Path after prediction",dir)
         # print(dir)
         cv2.imwrite(pred_filename,pred_image)
         # print(predictions)
