@@ -7,7 +7,7 @@ from app.face_recognitions import facerecognitionpipeline
 import matplotlib.image as matim 
 import glob
 
-UPLOAD_FOLDER = 'static/upload'
+UPLOAD_FOLDER = './static/upload'
 
 
 
