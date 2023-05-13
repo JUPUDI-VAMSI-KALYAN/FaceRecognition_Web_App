@@ -18,6 +18,7 @@ def app():
     return render_template('app.html')
 
 def genderapp():
+    report = []
     if request.method=='POST':
         f = request.files["image_name"]
         filename = f.filename
@@ -62,7 +63,5 @@ def genderapp():
         return render_template('gender.html',fileupload=True,report=report) # POST request
 
             # print("ML model predicted Successfullt")
-
-
 
     return render_template('gender.html',fileupload=False,report=report) # GET request
